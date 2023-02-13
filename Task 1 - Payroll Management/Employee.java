@@ -46,7 +46,7 @@ public class Employee{
         Employee.empId = empId;
     }
     public String ToString(){
-        String details = "Employee Id: "+this.publicEmpID+"\nName: "+this.name+"\nDepartment: "+this.department+"\nDesignation: "+this.designation+"\nSalary: "+this.salary+"\n";
+        String details = "\nEmployee Id: "+this.publicEmpID+"\nName: "+this.name+"\nDepartment: "+this.department+"\nDesignation: "+this.designation+"\nSalary: "+this.salary+"\n";
         return details;
     }
     public void setAllowance(){
@@ -59,7 +59,7 @@ public class Employee{
         }
         System.out.println("Allowance = "+ (this.salary * allowance));
         this.salary += (this.salary * allowance);
-        System.out.println("Salary with Allowance = "+ this.salary);
+        System.out.println("\nSalary with Allowance = "+ this.salary);
     }
 }
 

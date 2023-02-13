@@ -39,46 +39,46 @@ public class TestEmployee {
                 }
                 while(true){
                     try{
-                        System.out.println("Available Deaprtments:-\n1.HR\n2.Support\n3.Testing\n4.Design\n5.Financial\nEnter the Department: ");
+                        System.out.println("\nAvailable Deaprtments:-\n1.HR\n2.Support\n3.Testing\n4.Design\n5.Financial\nEnter the Department: ");
                         departmentIdx = Integer.parseInt(scanner.nextLine());
                     }
                     catch(NumberFormatException e){
                         System.out.println(">>>Enter Single Integer Value!");
                         continue;
                     }
-                    if(departmentIdx > 0 && departmentIdx < 6){
+                    if(departmentIdx > 0 && departmentIdx <= department.length){
                         break;
                     }
                     else{
-                        System.out.println(">>>Enter valid choice 2");
+                        System.out.println(">>>Enter valid choice");
                     }
                 }
                 while(true){
                     try{
-                        System.out.println("Available Designations:-\n1.Manager\n2.Administrator\n3.Tester\n4.UI/UX Designer\n5.Developer\nEnter the Designation: ");
+                        System.out.println("\nAvailable Designations:-\n1.Manager\n2.Administrator\n3.Tester\n4.UI/UX Designer\n5.Developer\nEnter the Designation: ");
                         designationIdx = Integer.parseInt(scanner.nextLine());
                     }
                     catch(NumberFormatException e){
                         System.out.println(">>>Enter Single Integer Value!");
                         continue;
                     }
-                    if(designationIdx > 0 && designationIdx < 6){
+                    if(designationIdx > 0 && designationIdx <= designation.length){
                         break;
                     }
                     else{
-                        System.out.println(">>>Enter valid choice 2");
+                        System.out.println(">>>Enter valid choice");
                     }
                 }
                 while(true){
                     try{
-                        System.out.println("Enter Salary: ");
+                        System.out.println("\nEnter Salary: ");
                         salary = Double.parseDouble(scanner.nextLine());
                     }
                     catch(NumberFormatException e){
                         System.out.println(">>>Enter valid Salary");
                         continue;
                     }
-                    if(salary > 5000){
+                    if(salary > 0){
                         break;
                     }
                     else{
@@ -89,10 +89,15 @@ public class TestEmployee {
                 employees.add(employee);                
             }
             else{
-                for (int i = 0; i < employees.size(); i++){
-                        System.out.println(employees.get(i).ToString());
-                        employees.get(i).setAllowance();
-                    }
+                if(employees.size()!=0){
+                    for (int i = 0; i < employees.size(); i++){
+                            System.out.println(employees.get(i).ToString());
+                            employees.get(i).setAllowance();
+                        }
+                }
+                else{
+                    System.out.println("---No Employee Added!---");
+                }
                 break;
             }
         }
