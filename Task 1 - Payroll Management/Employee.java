@@ -22,18 +22,19 @@ public class Employee{
         return name;
     }
     public void setName(String name) {
+        Scanner in = new Scanner(System.in);
         while(true){
             if(name.matches("[a-zA-Z ]+") && name.length() > 2){
                 break;
             }
             else{
                 System.out.println("\n>>>>>Enter a valid name!!!");
-                Scanner in = new Scanner(System.in);
                 System.out.println("Enter the name of employee: ");
                 name = in.nextLine();
             }
         }
         this.name = name;
+        in.close();
     }
     public String getDepartment() {
         return department;
@@ -60,6 +61,7 @@ public class Employee{
             }
         }
         this.department = departments[departmentIdx-1];
+        in.close();
     }
     public String getDesignation() {
         return designation;
@@ -86,6 +88,7 @@ public class Employee{
             }
         }
         this.designation = designation[designationIdx-1];
+        in.close();
     }
     public double getSalary() {
         return salary;
@@ -103,6 +106,7 @@ public class Employee{
             }
         }
         this.salary = salary;
+        in.close();
     }
     public int getEmpID() {
         return this.empId;

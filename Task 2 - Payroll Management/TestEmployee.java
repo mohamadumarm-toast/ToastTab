@@ -1,9 +1,8 @@
 import java.util.*;
 public class TestEmployee {
     public static void main(String[] args){
-        String name, size;
         double salary;
-        int  departmentIdx = 0, designationIdx = 0, choice = 0;
+        int  choice = 0;
         Scanner scanner = new Scanner(System.in);
         ArrayList<Employee> employees = new ArrayList<>();
         while(true){
@@ -59,5 +58,6 @@ public class TestEmployee {
                 break;
             }
         }
+        scanner.close();
     }
 }
