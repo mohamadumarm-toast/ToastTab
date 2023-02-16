@@ -47,19 +47,71 @@ public class TestEmployee {
             }
             else{
                 if(employees.size()!=0){
+                    Hashtable<Employee, Integer> dict = new Hashtable<>();
                     MasterData data = new MasterData(employees);
                     for (Employee emp : data.getMasterData()) {
                         emp.setAllowance();
                         System.out.println(emp.toString());
                     }
-                    // for (int i = 0; i < employees.size(); i++){
-                    //         System.out.println(employees.get(i).toString());
-                    //         employees.get(i).setAllowance();
-                    //     }
+                    while(true){
+                        while(true){
+                            try{
+                                System.out.println("\n1.Add Attendance to Employees\n2.Show Eligile List\n3.Exit\nEnter your choice:");
+                                choice = Integer.parseInt(scanner.nextLine());
+                            }
+                            catch(NumberFormatException e){
+                                System.out.println(">>>Enter Single Integer Value!");
+                                continue;
+                            }
+                            if(choice > 0 && choice <= 3){
+                                break;
+                            }
+                            else{
+                                System.out.println(">>>Enter valid choice!");
+                            }
+                        }
+                        if(choice == 1){
+                            int days;
+                            for (Employee employee : data.getMasterData()) {
+                                while(true){
+                                    try{
+                                        System.out.println("Id: "+employee.getEmpID());
+                                        System.out.println("Name: "+employee.getName());
+                                        System.out.println("Enter No. of working days:");
+                                        days = Integer.parseInt(scanner.nextLine());
+                                    }
+                                    catch(NumberFormatException e){
+                                        System.out.println(">>>Enter Integer Value!");
+                                        continue;
+                                    }
+                                    if(days >=  0){
+                                        dict.put(employee, days);
+                                        break;
+                                    }
+                                    else{
+                                        System.out.println(">>>Enter non-negative number!");
+                                    }
+                                }
+                            }
+                        }
+                        else if(choice == 2){
+                            if(dict.size()!=0){
+                                AttendanceMaster employeeAttendance = new AttendanceMaster(dict);
+                                employeeAttendance.showEligibleList();
+                            }
+                            else{
+                                System.out.println(">>>>Attendance not yet Entered!");
+                            }
+                        }
+                        else{
+                            break;
+                        }
+                    }
                 }
                 else{
                     System.out.println("---No Employee Added!---");
                 }
+
                 break;
             }
         }

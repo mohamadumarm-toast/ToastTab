@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 
 public class MasterData {
-    private ArrayList<Employee> employee_list;
+    private ArrayList<Employee> employeeList;
 
-    public MasterData(ArrayList<Employee> employee_list){
-        this.employee_list = employee_list;
+    public MasterData(ArrayList<Employee> employeeList){
+        this.employeeList = employeeList;
     }
 
     public ArrayList<Employee> getMasterData(){
-        return employee_list;
+        return employeeList;
     }
     
 }
