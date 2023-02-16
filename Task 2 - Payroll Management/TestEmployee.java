@@ -11,16 +11,15 @@ public class TestEmployee {
                 try{
                     System.out.println("\nAdd an Employee~\n1.Yes\n2.No\nEnter your choice:");
                     choice = Integer.parseInt(scanner.nextLine());
+                    if(choice > 0 && choice < 3){
+                        break;
+                    }
+                    else{
+                        System.out.println(">>>Enter valid choice!");
+                    }
                 }
                 catch(NumberFormatException e){
                     System.out.println(">>>Enter Single Integer Value!");
-                    continue;
-                }
-                if(choice > 0 && choice < 3){
-                    break;
-                }
-                else{
-                    System.out.println(">>>Enter valid choice!");
                 }
             }
             if(choice == 1){
@@ -36,13 +35,12 @@ public class TestEmployee {
                     try{
                         System.out.println("\nEnter Salary: ");
                         salary = Double.parseDouble(scanner.nextLine());
+                        employee.setSalary(salary);
+                        break;
                     }
                     catch(NumberFormatException e){
                         System.out.println(">>>Enter valid Salary");
-                        continue;
                     }
-                    employee.setSalary(salary);
-                    break;
                 }
                 employees.add(employee);                
             }
@@ -61,16 +59,15 @@ public class TestEmployee {
                             try{
                                 System.out.println("\n1.Add Attendance to Employees\n2.Show Eligible List\n3.Go back\n4.Exit\nEnter your choice:");
                                 choice = Integer.parseInt(scanner.nextLine());
+                                if(choice > 0 && choice <= 4){
+                                    break;
+                                }
+                                else{
+                                    System.out.println(">>>Enter valid choice!");
+                                }
                             }
                             catch(NumberFormatException e){
                                 System.out.println(">>>Enter Single Integer Value!");
-                                continue;
-                            }
-                            if(choice > 0 && choice <= 4){
-                                break;
-                            }
-                            else{
-                                System.out.println(">>>Enter valid choice!");
                             }
                         }
                         if(choice == 1){
@@ -83,17 +80,16 @@ public class TestEmployee {
                                         System.out.println("Name: "+employee.getName());
                                         System.out.println("Enter No. of working days:");
                                         days = Integer.parseInt(scanner.nextLine());
+                                        if(days >=  0){
+                                            dict.put(employee, days);
+                                            break;
+                                        }
+                                        else{
+                                            System.out.println(">>>Enter non-negative number!");
+                                        }
                                     }
                                     catch(NumberFormatException e){
                                         System.out.println(">>>Enter Integer Value!");
-                                        continue;
-                                    }
-                                    if(days >=  0){
-                                        dict.put(employee, days);
-                                        break;
-                                    }
-                                    else{
-                                        System.out.println(">>>Enter non-negative number!");
                                     }
                                 }
                                 System.out.println("--------------------------------------------");

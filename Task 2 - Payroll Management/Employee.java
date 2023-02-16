@@ -46,6 +46,15 @@ public class Employee{
         while(true){
             try{
                 departmentIdx = Integer.parseInt(dept);
+                if(departmentIdx > 0 && departmentIdx <= departments.length){
+                    this.department = departments[departmentIdx-1];
+                    break;
+                }
+                else{
+                    System.out.println(">>>Enter valid choice");
+                    System.out.println("\nAvailable Deaprtments:-\n1.HR\n2.Support\n3.Testing\n4.Design\n5.Financial\nEnter the Department: ");
+                    dept = in.nextLine();
+                }
             }
             catch(NumberFormatException e){
                 System.out.println(">>>Enter Single Integer Value!");
@@ -53,16 +62,7 @@ public class Employee{
                 dept = in.nextLine();
                 continue;
             }
-            if(departmentIdx > 0 && departmentIdx <= departments.length){
-                break;
-            }
-            else{
-                System.out.println(">>>Enter valid choice");
-                System.out.println("\nAvailable Deaprtments:-\n1.HR\n2.Support\n3.Testing\n4.Design\n5.Financial\nEnter the Department: ");
-                dept = in.nextLine();
-            }
         }
-        this.department = departments[departmentIdx-1];
         
     }
     public String getDesignation() {
@@ -75,23 +75,22 @@ public class Employee{
         while(true){
             try{
                 designationIdx = Integer.parseInt(desgn);
+                if(designationIdx > 0 && designationIdx <= designation.length){
+                    this.designation = designation[designationIdx-1];
+                    break;
+                }
+                else{
+                    System.out.println(">>>Enter valid choice");
+                    System.out.println("\nAvailable Designations:-\n1.Manager\n2.Administrator\n3.Tester\n4.UI/UX Designer\n5.Developer\nEnter the Designation: ");
+                    desgn = in.nextLine();
+                }
             }
             catch(NumberFormatException e){
                 System.out.println(">>>Enter Single Integer Value!");
                 System.out.println("\nAvailable Designations:-\n1.Manager\n2.Administrator\n3.Tester\n4.UI/UX Designer\n5.Developer\nEnter the Designation: ");
                 desgn = in.nextLine();
-                continue;
-            }
-            if(designationIdx > 0 && designationIdx <= designation.length){
-                break;
-            }
-            else{
-                System.out.println(">>>Enter valid choice");
-                System.out.println("\nAvailable Designations:-\n1.Manager\n2.Administrator\n3.Tester\n4.UI/UX Designer\n5.Developer\nEnter the Designation: ");
-                desgn = in.nextLine();
             }
         }
-        this.designation = designation[designationIdx-1];
         
     }
     public double getSalary() {
