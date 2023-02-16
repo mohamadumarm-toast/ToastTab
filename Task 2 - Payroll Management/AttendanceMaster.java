@@ -11,8 +11,9 @@ public class AttendanceMaster {
         int count =0;
         for (Employee emp : this.employeeDict.keySet()) {
             int days = this.employeeDict.get(emp);
-            if(days >= 10){
+            if(days > 10){
                 System.out.println(emp.toString());
+                System.out.println("---------------------------------------");
                 count++;
             }
         }

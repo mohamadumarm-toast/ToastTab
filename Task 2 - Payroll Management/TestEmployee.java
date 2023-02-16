@@ -5,6 +5,7 @@ public class TestEmployee {
         int  choice = 0;
         Scanner scanner = new Scanner(System.in);
         ArrayList<Employee> employees = new ArrayList<>();
+        menu:
         while(true){
             while(true){
                 try{
@@ -49,21 +50,23 @@ public class TestEmployee {
                 if(employees.size()!=0){
                     Hashtable<Employee, Integer> dict = new Hashtable<>();
                     MasterData data = new MasterData(employees);
+                    System.out.println("\n------------Employees Details-------------");
                     for (Employee emp : data.getMasterData()) {
                         emp.setAllowance();
                         System.out.println(emp.toString());
+                        System.out.println("----------------------------------------");
                     }
                     while(true){
                         while(true){
                             try{
-                                System.out.println("\n1.Add Attendance to Employees\n2.Show Eligile List\n3.Exit\nEnter your choice:");
+                                System.out.println("\n1.Add Attendance to Employees\n2.Show Eligible List\n3.Go back\n4.Exit\nEnter your choice:");
                                 choice = Integer.parseInt(scanner.nextLine());
                             }
                             catch(NumberFormatException e){
                                 System.out.println(">>>Enter Single Integer Value!");
                                 continue;
                             }
-                            if(choice > 0 && choice <= 3){
+                            if(choice > 0 && choice <= 4){
                                 break;
                             }
                             else{
@@ -72,6 +75,7 @@ public class TestEmployee {
                         }
                         if(choice == 1){
                             int days;
+                            System.out.println("----------------Attendance Portal--------------------");
                             for (Employee employee : data.getMasterData()) {
                                 while(true){
                                     try{
@@ -92,16 +96,21 @@ public class TestEmployee {
                                         System.out.println(">>>Enter non-negative number!");
                                     }
                                 }
+                                System.out.println("--------------------------------------------");
                             }
                         }
                         else if(choice == 2){
                             if(dict.size()!=0){
                                 AttendanceMaster employeeAttendance = new AttendanceMaster(dict);
+                                System.out.println("-------------Eligible Employees-------------");
                                 employeeAttendance.showEligibleList();
                             }
                             else{
                                 System.out.println(">>>>Attendance not yet Entered!");
                             }
+                        }
+                        else if(choice == 3){
+                            continue menu;
                         }
                         else{
                             break;
