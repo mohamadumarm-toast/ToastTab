@@ -47,10 +47,15 @@ public class TestEmployee {
             }
             else{
                 if(employees.size()!=0){
-                    for (int i = 0; i < employees.size(); i++){
-                            System.out.println(employees.get(i).toString());
-                            employees.get(i).setAllowance();
-                        }
+                    MasterData data = new MasterData(employees);
+                    for (Employee emp : data.getMasterData()) {
+                        emp.setAllowance();
+                        System.out.println(emp.toString());
+                    }
+                    // for (int i = 0; i < employees.size(); i++){
+                    //         System.out.println(employees.get(i).toString());
+                    //         employees.get(i).setAllowance();
+                    //     }
                 }
                 else{
                     System.out.println("---No Employee Added!---");

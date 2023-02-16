@@ -34,7 +34,7 @@ public class Employee{
             }
         }
         this.name = name;
-        in.close();
+        
     }
     public String getDepartment() {
         return department;
@@ -58,10 +58,11 @@ public class Employee{
             }
             else{
                 System.out.println(">>>Enter valid choice");
+                System.out.println("\nAvailable Deaprtments:-\n1.HR\n2.Support\n3.Testing\n4.Design\n5.Financial\nEnter the Department: ");
+                dept = in.nextLine();
             }
         }
-        this.department = departments[departmentIdx-1];
-        in.close();
+        this.department = departments[departmentIdx-1];    
     }
     public String getDesignation() {
         return designation;
@@ -85,10 +86,11 @@ public class Employee{
             }
             else{
                 System.out.println(">>>Enter valid choice");
+                System.out.println("\nAvailable Designations:-\n1.Manager\n2.Administrator\n3.Tester\n4.UI/UX Designer\n5.Developer\nEnter the Designation: ");
+                desgn = in.nextLine();
             }
         }
         this.designation = designation[designationIdx-1];
-        in.close();
     }
     public double getSalary() {
         return salary;
@@ -105,8 +107,7 @@ public class Employee{
                 salary = in.nextDouble();
             }
         }
-        this.salary = salary;
-        in.close();
+        this.salary = salary;   
     }
     public int getEmpID() {
         return this.empId;
