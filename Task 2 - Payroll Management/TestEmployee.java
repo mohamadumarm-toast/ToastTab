@@ -2,20 +2,20 @@ import java.util.*;
 public class TestEmployee {
     public static void main(String[] args){
         double salary;
-        int  choice = 0;
         Scanner scanner = new Scanner(System.in);
         ArrayList<Employee> employees = new ArrayList<>();
+        ArrayList<Employee> temp = new ArrayList<>();
+        Hashtable<Employee, Integer> dict = new Hashtable<>();
         menu:
         while(true){
-            while(true){
+            int  choice = 0;
+            boolean flag = false;
+            while(choice < 1 || choice > 2){
                 try{
                     System.out.println("\nAdd an Employee~\n1.Yes\n2.No\nEnter your choice:");
                     choice = Integer.parseInt(scanner.nextLine());
-                    if(choice > 0 && choice < 3){
-                        break;
-                    }
-                    else{
-                        System.out.println(">>>Enter valid choice!");
+                    if(choice < 1 || choice > 2){
+                        System.out.println(">>>Enter valid choice!");   
                     }
                 }
                 catch(NumberFormatException e){
@@ -42,27 +42,25 @@ public class TestEmployee {
                         System.out.println(">>>Enter valid Salary");
                     }
                 }
-                employees.add(employee);                
+                employees.add(employee);
+                temp.add(employee);           
             }
             else{
                 if(employees.size()!=0){
-                    Hashtable<Employee, Integer> dict = new Hashtable<>();
                     MasterData data = new MasterData(employees);
                     System.out.println("\n------------Employees Details-------------");
                     for (Employee emp : data.getMasterData()) {
-                        emp.setAllowance();
+                        // emp.setAllowance();
                         System.out.println(emp.toString());
                         System.out.println("----------------------------------------");
                     }
                     while(true){
-                        while(true){
+                        choice = 0;
+                        while(choice < 1 || choice > 4){
                             try{
                                 System.out.println("\n1.Add Attendance to Employees\n2.Show Eligible List\n3.Go back\n4.Exit\nEnter your choice:");
                                 choice = Integer.parseInt(scanner.nextLine());
-                                if(choice > 0 && choice <= 4){
-                                    break;
-                                }
-                                else{
+                                if(choice < 1 || choice > 4){
                                     System.out.println(">>>Enter valid choice!");
                                 }
                             }
@@ -73,7 +71,7 @@ public class TestEmployee {
                         if(choice == 1){
                             int days;
                             System.out.println("----------------Attendance Portal--------------------");
-                            for (Employee employee : data.getMasterData()) {
+                            for (Employee employee : temp) {
                                 while(true){
                                     try{
                                         System.out.println("Id: "+employee.getEmpID());
@@ -93,12 +91,14 @@ public class TestEmployee {
                                     }
                                 }
                                 System.out.println("--------------------------------------------");
+                                flag = true;
                             }
                         }
                         else if(choice == 2){
                             if(dict.size()!=0){
                                 AttendanceMaster employeeAttendance = new AttendanceMaster(dict);
                                 System.out.println("-------------Eligible Employees-------------");
+                                System.out.println(dict);
                                 employeeAttendance.showEligibleList();
                             }
                             else{
@@ -106,17 +106,19 @@ public class TestEmployee {
                             }
                         }
                         else if(choice == 3){
+                            if(flag == true){
+                                temp.clear();
+                            }
                             continue menu;
                         }
                         else{
-                            break;
+                            System.exit(0);
                         }
                     }
                 }
                 else{
                     System.out.println("---No Employee Added!---");
                 }
-
                 break;
             }
         }
