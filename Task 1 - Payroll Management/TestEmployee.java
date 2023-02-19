@@ -35,12 +35,12 @@ public class TestEmployee {
                     try{
                         System.out.println("\nEnter Salary: ");
                         salary = Double.parseDouble(scanner.nextLine());
+                        employee.setSalary(salary);
                     }
                     catch(NumberFormatException e){
                         System.out.println(">>>Enter valid Salary");
                         continue;
                     }
-                    employee.setSalary(salary);
                     break;
                 }
                 employees.add(employee);                

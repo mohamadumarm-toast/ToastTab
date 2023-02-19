@@ -98,11 +98,11 @@ public class Employee{
     public void setSalary(double salary) {
         Scanner in = new Scanner(System.in);
         while(true){
-            if(salary > 0){
+            if(salary >= 5000){
                 break;
             }
             else{
-                System.out.println(">>>Enter valid Salary");
+                System.out.println(">>>Enter Salary greater than 5000");
                 System.out.println("\nEnter Salary: ");
                 salary = in.nextDouble();
             }
