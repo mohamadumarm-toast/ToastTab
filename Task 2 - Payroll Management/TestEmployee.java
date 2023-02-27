@@ -56,11 +56,11 @@ public class TestEmployee {
                     }
                     while(true){
                         choice = 0;
-                        while(choice < 1 || choice > 4){
+                        while(choice < 1 || choice > 5){
                             try{
-                                System.out.println("\n1.Add Attendance to Employees\n2.Show Eligible List\n3.Go back\n4.Exit\nEnter your choice:");
+                                System.out.println("\n1.Add Attendance to Employees\n2.Update Attendance by ID\n3.Show Eligible List\n4.Go back\n5.Exit\nEnter your choice:");
                                 choice = Integer.parseInt(scanner.nextLine());
-                                if(choice < 1 || choice > 4){
+                                if(choice < 1 || choice > 5){
                                     System.out.println(">>>Enter valid choice!");
                                 }
                             }
@@ -95,17 +95,60 @@ public class TestEmployee {
                             }
                         }
                         else if(choice == 2){
+                            int keyId, days;
+                            boolean empFound = false;
+                            System.out.println("----------------Update Attendance By ID--------------------");
+                            while(true){
+                                try{
+                                    System.out.println("Enter Employee ID:");
+                                    keyId = Integer.parseInt(scanner.nextLine());
+                                    for (Employee emp : employees) {
+                                        if(emp.getEmpID() == keyId){
+                                            empFound = true;
+                                            while(true){
+                                                try{
+                                                    System.out.println("Id: "+emp.getEmpID());
+                                                    System.out.println("Name: "+emp.getName());
+                                                    System.out.println("Enter No. of working days:");
+                                                    days = Integer.parseInt(scanner.nextLine());
+                                                    if(days >=  0){
+                                                        dict.put(emp, days);
+                                                        break;
+                                                    }
+                                                    else{
+                                                        System.out.println(">>>Enter non-negative number!");
+                                                    }
+                                                }
+                                                catch(NumberFormatException e){
+                                                    System.out.println(">>>Enter Integer Value!");
+                                                }
+                                            }
+                                            break;
+                                        }
+        
+                                    }
+                                    if(!empFound){
+                                        System.out.println(">>>>Employee not found! Re-enter Valid Employee ID...");
+                                    }
+                                    else
+                                        break;
+                                }
+                                catch(NumberFormatException e){
+                                    System.out.println(">>>Enter Integer Value!");
+                                }
+                            }
+                        }
+                        else if(choice == 3){
                             if(dict.size()!=0){
                                 AttendanceMaster employeeAttendance = new AttendanceMaster(dict);
                                 System.out.println("-------------Eligible Employees-------------");
-                                System.out.println(dict);
                                 employeeAttendance.showEligibleList();
                             }
                             else{
                                 System.out.println(">>>>Attendance not yet Entered!");
                             }
                         }
-                        else if(choice == 3){
+                        else if(choice == 4){
                             if(flag == true){
                                 temp.clear();
                             }

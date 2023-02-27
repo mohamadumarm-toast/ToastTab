@@ -103,7 +103,7 @@ public class Employee{
                 break;
             }
             else{
-                System.out.println(">>>Enter valid Salary");
+                System.out.println(">>>Enter Salary greater than 5000");
                 System.out.println("\nEnter Salary: ");
                 salary = in.nextDouble();
             }
