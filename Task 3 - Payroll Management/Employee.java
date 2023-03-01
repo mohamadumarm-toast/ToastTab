@@ -115,7 +115,14 @@ public class Employee{
         return this.empId;
       }
     public String toString(){
-        String details = "\nEmployee Id: "+this.empId+"\nName: "+this.name+"\nDepartment: "+this.department+"\nDesignation: "+this.designation+"\nSalary: "+this.salary+"\n";
+        double originalSalary;
+        if(this.getDesignation().compareTo("Manager")==0){
+            originalSalary = this.getSalary()/1.2;
+        }
+        else{
+            originalSalary = this.getSalary()/1.1;
+        }
+        String details = "\nEmployee Id: "+this.empId+"\nName: "+this.name+"\nDepartment: "+this.department+"\nDesignation: "+this.designation+"\nSalary: "+originalSalary+"\n";
         return details;
     }
     public void setAllowance(){
@@ -126,9 +133,7 @@ public class Employee{
         else{
             allowance = 0.1;
         }
-        // System.out.println("Allowance = "+ (this.salary * allowance));
         this.salary += (this.salary * allowance);
-        // System.out.println("\nSalary with Allowance = "+ this.salary);
     }
 }
 

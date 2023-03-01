@@ -12,9 +12,14 @@ public class SalCalculator {
         System.out.println("-------------------------------------------------------PAYSLIP-------------------------------------------------------");
         System.out.printf("%-10s  %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n","ID","Name","Department","Designation","Salary","PF","GROSS","NET");
         for (Employee emp : filteredDict.keySet()) {
-            salary = emp.getSalary();
-            pf = emp.getSalary() * 0.1;
-            emp.setAllowance();
+            if(emp.getDesignation().compareTo("Manager")==0){
+                salary = emp.getSalary()/1.2;
+            }
+            else{
+                salary = emp.getSalary()/1.1;
+            }
+            
+            pf = salary * 0.1;
             gross = emp.getSalary();
             net = gross - pf; 
             System.out.println("---------------------------------------------------------------------------------------------------------------------");
