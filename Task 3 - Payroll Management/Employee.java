@@ -122,8 +122,7 @@ public class Employee{
         else{
             originalSalary = this.getSalary()/1.1;
         }
-        String details = "\nEmployee Id: "+this.empId+"\nName: "+this.name+"\nDepartment: "+this.department+"\nDesignation: "+this.designation+"\nSalary: "+originalSalary+"\n";
-        return details;
+        return String.format("%-10d %-15s %-15s %-15s %-15.2f",this.empId, this.name, this.department, this.designation, originalSalary);
     }
     public void setAllowance(){
         double allowance;

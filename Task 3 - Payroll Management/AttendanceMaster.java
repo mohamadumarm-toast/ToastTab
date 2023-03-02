@@ -9,18 +9,15 @@ public class AttendanceMaster {
     }
 
     public void showEligibleList(){
-        int count =0;
+        System.out.printf("%-10s %-15s %-15s %-15s %-15s\n","Id", "Name", "Department", "Designation", "Salary");
         for (Employee emp : this.employeeDict.keySet()) {
             int days = this.employeeDict.get(emp);
             if(days > 10){
+                System.out.println("--------------------------------------------------------------------");
                 System.out.println(emp.toString());
-                System.out.println("---------------------------------------");
-                count++;
             }
         }
-        if(count==0){
-            System.out.println("---No one is eligible!---");
-        }
+        System.out.println("--------------------------------------------------------------------");
     }
 
     public void filterEmployeeList(){
@@ -31,6 +28,11 @@ public class AttendanceMaster {
                 this.employeeDict.remove(emp);
             }
         }
-        showEligibleList();
+        if(this.employeeDict.size()!=0)
+            showEligibleList();
+        else{
+            System.out.println(">>>No eligible employees!");
+        }
+
     }
 }

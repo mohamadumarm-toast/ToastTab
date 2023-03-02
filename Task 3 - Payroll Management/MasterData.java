@@ -10,5 +10,12 @@ public class MasterData {
     public ArrayList<Employee> getMasterData(){
         return employeeList;
     }
+
+    public void displayEmployees(){
+        for (Employee emp : employeeList) {
+            System.out.println(emp.toString());
+            System.out.println("----------------------------------------");
+        }
+    }
     
 }
