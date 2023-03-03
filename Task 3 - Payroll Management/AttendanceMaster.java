@@ -2,12 +2,15 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class AttendanceMaster {
-    Hashtable<Employee, Integer> employeeDict;
+    private Hashtable<Employee, Integer> employeeDict;
 
     public AttendanceMaster(Hashtable<Employee, Integer> employeeDict){
-        this.employeeDict = employeeDict;
+        this.employeeDict = employeeDict ;
     }
 
+    public Hashtable<Employee, Integer> getEmployeeDict(){
+        return employeeDict;
+    }
     public void showEligibleList(){
         System.out.printf("%-10s %-15s %-15s %-15s %-15s\n","Id", "Name", "Department", "Designation", "Salary");
         for (Employee emp : this.employeeDict.keySet()) {

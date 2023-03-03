@@ -12,10 +12,10 @@ public class TestEmployee {
     public static void customSort(ArrayList<Employee> arr, int choice, int order){
         //Sort by name
         if(choice == 1){
-            if(order == 1){ //Ascending
+            if(order == 1){ //Asc
                 arr.sort((Employee e1, Employee e2) -> e1.getName().compareTo(e2.getName()));
             }
-            else{ //Descending
+            else{ //Desc
                 arr.sort((Employee e1, Employee e2) -> e2.getName().compareTo(e1.getName()));
             }
         }
@@ -91,32 +91,37 @@ public class TestEmployee {
             }
             else if(choice == 2){
                 if(employees.size()!=0){
-                    int days;
-                    System.out.println("\n----------------Attendance Portal--------------------");
-                    for (Employee employee : temp) {
-                        while(true){
-                            try{
-                                System.out.println("\nId: "+employee.getEmpID());
-                                System.out.println("Name: "+employee.getName());
-                                System.out.println("Enter No. of working days:");
-                                days = Integer.parseInt(scanner.nextLine());
-                                if(days >=  0){
-                                    dict.put(employee, days);
-                                    break;
-                                }
-                                else{
-                                    System.out.println("\n>>>Enter non-negative number!");
-                                }
-                            }
-                            catch(NumberFormatException e){
-                                System.out.println("\n>>>Enter Integer Value!");
-                            }
-                        }
-                        System.out.println("--------------------------------------------");
+                    if(temp.size() == 0){
+                        System.out.println(">>>Attendance added for all employees!");
                     }
-                    addAttendance = true;
-                    temp.clear();
-                    System.out.println("\n>>>>Attendance Added for All Employees!");
+                    else{
+                        int days;
+                        System.out.println("\n----------------Attendance Portal--------------------");
+                        for (Employee employee : temp) {
+                            while(true){
+                                try{
+                                    System.out.println("\nId: "+employee.getEmpID());
+                                    System.out.println("Name: "+employee.getName());
+                                    System.out.println("Enter No. of working days:");
+                                    days = Integer.parseInt(scanner.nextLine());
+                                    if(days >=  0){
+                                        dict.put(employee, days);
+                                        break;
+                                    }
+                                    else{
+                                        System.out.println("\n>>>Enter non-negative number!");
+                                    }
+                                }
+                                catch(NumberFormatException e){
+                                    System.out.println("\n>>>Enter Integer Value!");
+                                }
+                            }
+                            System.out.println("--------------------------------------------");
+                        }
+                        addAttendance = true;
+                        temp.clear();
+                        System.out.println("\n>>>>Attendance Added for All Employees!");
+                    }
                 }
                 else{
                     System.out.println("\n>>>>No Employees Added yet!");
@@ -143,6 +148,7 @@ public class TestEmployee {
                                             if(days >=  0){
                                                 dict.put(emp, days);
                                                 filtered = false;
+                                                temp.remove(emp);
                                                 System.out.println("\n>>>>Attendance Updated!");
                                                 addAttendance = true;
                                                 break;
@@ -175,9 +181,7 @@ public class TestEmployee {
             }
             else if(choice == 4){
                 if(dict.size()!=0){
-                    System.out.println("Dict:"+dict.size());
-                    System.out.println("List:"+employees.size());
-                    if(addAttendance && employees.size()==dict.size()){
+                    if(addAttendance && temp.size()==0){
                         System.out.println("\n>>>Filtering Employees....");
                         employeeAttendance.filterEmployeeList();
                         filtered = true;
@@ -203,8 +207,8 @@ public class TestEmployee {
                 if(employees.size()!=0){
                     if(filtered){
                         SalCalculator calc = new SalCalculator();
-                        if(employeeAttendance.employeeDict.size()!=0){
-                            calc.calculateSalary(employeeAttendance.employeeDict);
+                        if(employeeAttendance.getEmployeeDict().size()!=0){
+                            calc.calculateSalary(employeeAttendance.getEmployeeDict());
                         }
                         else{
                             System.out.println("\n>>>No one is eligible!");
