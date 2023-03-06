@@ -41,7 +41,6 @@ public class TestEmployee {
     public static void main(String[] args){
         double salary;
         boolean filtered = false;
-        boolean addAttendance = true;
         Scanner scanner = new Scanner(System.in);
         ArrayList<Employee> employees = new ArrayList<>();
         ArrayList<Employee> temp = new ArrayList<>();
@@ -86,7 +85,7 @@ public class TestEmployee {
                 employees.add(employee);
                 temp.add(employee); 
                 employee.setAllowance(); 
-                addAttendance = false;
+                filtered = false;
                 System.out.println("\n>>>>>Employee Added Successfully!");       
             }
             else if(choice == 2){
@@ -104,12 +103,12 @@ public class TestEmployee {
                                     System.out.println("Name: "+employee.getName());
                                     System.out.println("Enter No. of working days:");
                                     days = Integer.parseInt(scanner.nextLine());
-                                    if(days >=  0){
+                                    if(days >=  0 && days <=31){
                                         dict.put(employee, days);
                                         break;
                                     }
                                     else{
-                                        System.out.println("\n>>>Enter non-negative number!");
+                                        System.out.println("\n>>>Enter valid number of days per month!");
                                     }
                                 }
                                 catch(NumberFormatException e){
@@ -118,7 +117,6 @@ public class TestEmployee {
                             }
                             System.out.println("--------------------------------------------");
                         }
-                        addAttendance = true;
                         temp.clear();
                         System.out.println("\n>>>>Attendance Added for All Employees!");
                     }
@@ -145,16 +143,15 @@ public class TestEmployee {
                                             System.out.println("Name: "+emp.getName());
                                             System.out.println("Enter No. of working days:");
                                             days = Integer.parseInt(scanner.nextLine());
-                                            if(days >=  0){
+                                            if(days >=  0 && days <=31){
                                                 dict.put(emp, days);
                                                 filtered = false;
                                                 temp.remove(emp);
                                                 System.out.println("\n>>>>Attendance Updated!");
-                                                addAttendance = true;
                                                 break;
                                             }
                                             else{
-                                                System.out.println("\n>>>Enter non-negative number!");
+                                                System.out.println("\n>>>Enter valid number of days per month!");
                                             }
                                         }
                                         catch(NumberFormatException e){
@@ -180,8 +177,8 @@ public class TestEmployee {
                 }
             }
             else if(choice == 4){
-                if(dict.size()!=0){
-                    if(addAttendance && temp.size()==0){
+                if(employees.size() != 0 ){
+                    if(temp.size() == 0){
                         System.out.println("\n>>>Filtering Employees....");
                         employeeAttendance.filterEmployeeList();
                         filtered = true;
@@ -191,7 +188,7 @@ public class TestEmployee {
                     }
                 }
                 else{
-                    System.out.println("\n>>>>Attendance not yet Entered!");
+                    System.out.println("\n>>>>No Employees Added yet!");
                 }
             }
             else if(choice == 5){
@@ -213,7 +210,6 @@ public class TestEmployee {
                         else{
                             System.out.println("\n>>>No one is eligible!");
                         }
-                        filtered = false;
                     }
                     else{
                         System.out.println("\n>>>>>Filter before Calculating the salary. Choose 4 to filter....");
@@ -229,7 +225,7 @@ public class TestEmployee {
                     int sortChoice, order;
                     while(true){
                         try{
-                            System.out.println("\n------------SORTING------------\n1.Sort By Name\n2.Sort By Dept\n3.Sort By Designation\nEnter your Choice:");
+                            System.out.println("\n------------SORTING------------\n1.Sort By Name\n2.Sort By Dept\n3.Sort By Designation\n4.Exit\nEnter your Choice:");
                             sortChoice = Integer.parseInt(scanner.nextLine());
                             if(sortChoice >=1 && sortChoice <=3){
                                 while(true){
@@ -247,6 +243,9 @@ public class TestEmployee {
                                         System.out.println("\n>>>Enter Single Integer Value!");
                                     }
                                 }
+                                break;
+                            }
+                            else if(sortChoice == 4){
                                 break;
                             }
                             else{

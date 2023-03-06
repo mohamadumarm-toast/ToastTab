@@ -15,7 +15,7 @@ public class AttendanceMaster {
         System.out.printf("%-10s %-15s %-15s %-15s %-15s\n","Id", "Name", "Department", "Designation", "Salary");
         for (Employee emp : this.employeeDict.keySet()) {
             int days = this.employeeDict.get(emp);
-            if(days > 10){
+            if(days >= 10){
                 System.out.println("--------------------------------------------------------------------");
                 System.out.println(emp.toString());
             }
@@ -27,7 +27,7 @@ public class AttendanceMaster {
         ArrayList<Employee> keys = new ArrayList<>(this.employeeDict.keySet());
         for (Employee emp : keys) {
             int days = this.employeeDict.get(emp);
-            if(days <= 10){
+            if(days < 10){
                 this.employeeDict.remove(emp);
             }
         }
