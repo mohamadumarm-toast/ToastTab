@@ -25,7 +25,6 @@ namespace MyApp.Controllers
             else
             {
                 ViewBag.ErrorMessage = "Please enter a valid username and password.";
-                Console.WriteLine("Error");
                 return View("Index");
             }
             
