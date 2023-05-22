@@ -1,0 +1,60 @@
+﻿@model ToasttabWebApp.Models.User;
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_Layout2";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- First container div -->
+            <div class="container py-5">
+                <!-- Content for the first container -->
+                <h2>
+                    Built for restaurants.<br />
+                    Built for you.
+                </h2>
+                <p class="text-secondary">Quick to learn, and even easier to use: Toast's restaurant-first platform is built with you in mind.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Second container div -->
+            <div class="container">
+                
+                <form asp-controller="Home" asp-action="Validate" method="post" id="loginForm" onsubmit="return validateForm()" class="container border rounded-lg p-4 bg-light">
+                    <h1 class="text-center">@ViewData["Title"]</h1>
+                    <div class="form-group mb-2">
+                        <label asp-for="Username" class="control-label"></label>
+                        <input id="username" type="text" asp-for="Username" placeholder="Username" required autocomplete="off" oninput="validateUsername()" class="form-control" />
+                        <span id="errormsg1" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input id="password" type="password" asp-for="Password" placeholder="Password" required autocomplete="off" oninput="validatePass()" class="form-control" />
+                        <span id="errormsg2" class="text-danger"></span>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">Login</button>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <a href="@Url.Action("Signup","Home")" class="text-decoration-underline">Create an account</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/js/site.js"></script>
+<script>
+    window.onload = function () {
+        console.log(document.getElementById("username").value);
+        
+    }
+</script>

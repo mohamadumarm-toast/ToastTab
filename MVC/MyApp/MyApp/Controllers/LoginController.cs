@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using MyApp.Models;
 namespace MyApp.Controllers
 {
@@ -13,13 +14,10 @@ namespace MyApp.Controllers
         [HttpPost]
         public IActionResult Login(string username, string password)
         {
-            var key = new User(username, password);
-            var userRepo = new List<User>
+            DbSqlServer sqlServer = new();
+            if (sqlServer.ConnectAndValidateWithDB(username, password) == 1)
             {
-                new User("john","password123"),
-                new User("mdUmar", "Toast@1234")
-            };
-            if(userRepo.Any(u => u.Username == key.Username && u.Password == key.Password)) { 
+                ViewBag.username = username;
                 return View("LoginSuccess");
             }
             else

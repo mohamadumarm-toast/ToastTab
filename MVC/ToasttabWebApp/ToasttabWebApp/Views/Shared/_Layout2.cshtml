@@ -1,0 +1,43 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ToasttabWebApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div>
+    <nav class="navbar bg-info navbar-dark navbar-expand">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-5" >
+                <img class="d-inline-block align-text-top" width="30" height="24" src="~/images/logo.png" />
+                toast
+            </a>
+            <ul class="navbar-nav float-start">
+                <li class="nav-item">
+                    <a href="@Url.Action("Welcome","Home")" class="nav-link text-light ">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light ">About</a>
+                </li>
+                <li class="nav-item">
+                    <button onclick="location.href ='@Url.Action("Index","Home")'" class="btn btn-light mx-2">Login</button>
+                </li>
+                <li class="nav-item">
+                    <button onclick="location.href ='@Url.Action("Signup","Home")'" class="btn btn-success">Signup</button>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+    </div>
+    <div class="container pt-3">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+</body>
+</html>
