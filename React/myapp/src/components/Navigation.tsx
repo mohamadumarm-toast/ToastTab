@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import Login from './Login';
 class Navigation extends Component {
+    
+    
     Logout(){
+        // let nav = useNavigate();
         localStorage.removeItem("currentUser");
+        window.location.href = "http://localhost:3000/"
     }
   render() {
     if(localStorage.getItem('currentUser')=== null)
@@ -77,9 +81,7 @@ class Navigation extends Component {
                         </li>
                     </ul>
                     <div className="container-fluid d-flex justify-content-end">
-                        <Link to="/">
                             <button className="btn  btn-outline-dark mx-2" type="button" onClick={this.Logout}>Logout</button>
-                        </Link>
                     </div>
                 </nav>
             </div>
